@@ -29,9 +29,17 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
-
-
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+  }
+  makeWidget() {
+    return this.first_name + " " + this.last_name + " Widget";
+  }
+}
 
 ////////// PROBLEM 2 //////////
 
@@ -49,9 +57,19 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee {
+  constructor(first, last, email, age) {
+    super(first, last, email, age);
+    this.reports = [];
+  }
 
-
+  hire(employee) {
+    this.reports.push(employee);
+  }
+  fire(i) {
+    this.reports.splice(i, 1);
+  }
+}
 
 ////////// PROBLEM 3 //////////
 
@@ -75,9 +93,44 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager {
+  constructor(first, last, email, age) {
+    super(first, last, email, age);
+    this.title = "Not a manager";
+    this.bonus = 0;
+    this.reports = [];
+  }
+  hire(employee) {
+    this.reports.push(employee);
+    if (this.reports.length > 0 && this.reports.length < 4) {
+      this.title = "Barely Manager";
+    } else if (this.reports.length > 3 && this.reports.length < 11) {
+      this.title = "Mostly Manager";
+    } else if (this.reports.length > 10 && this.reports.length < 51) {
+      this.title = "Manager";
+    } else if (this.reports.length > 50 && this.reports.length < 101) {
+      this.title = "Manager Plus";
+    } else if (this.reports.length > 100) {
+      this.title = "Bestest Manager";
+    }
+  }
 
-
+  fire(i) {
+    this.reports.splice(i, 1);
+    this.bonus += 100;
+    if (this.reports.length > 0 && this.reports.length < 4) {
+      this.title = "Barely Manager";
+    } else if (this.reports.length > 3 && this.reports.length < 11) {
+      this.title = "Mostly Manager";
+    } else if (this.reports.length > 10 && this.reports.length < 51) {
+      this.title = "Manager";
+    } else if (this.reports.length > 50 && this.reports.length < 101) {
+      this.title = "Manager Plus";
+    } else if (this.reports.length > 100) {
+      this.title = "Bestest Manager";
+    }
+  }
+}
 
 ////////// PROBLEM 4 - Black Diamond //////////
 
@@ -101,7 +154,3 @@
         - This function returns a function that is called when the machine is done rebooting
         - It should set decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
-
-//Code Here
-
-

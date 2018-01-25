@@ -127,7 +127,9 @@ const orders = [
   Use a high order method to get sum of all the order totals
 */
 
-let ordersTotal; //Code Here
+let ordersTotal = orders.map(function(current, index, array) {
+  return current.price + current.tax;
+});
 
 ////////// PROBLEM 6 //////////
 

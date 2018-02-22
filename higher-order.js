@@ -104,7 +104,7 @@ const monstersInYourPocket = [
 */
 
 //Code Here
-let myStrongest; // = monstersInYourPocket.filter(/* Provide Your Callback Here */)
+let myStrongest = monstersInYourPocket.filter((i, index, array) => i.CP > 200);
 
 ////////// PROBLEM 5 //////////
 
@@ -128,7 +128,7 @@ const orders = [
 */
 
 let ordersTotal = orders.map(function(current, index, array) {
-  return current.price + current.tax;
+  return current.price * (1 + current.tax);
 });
 
 ////////// PROBLEM 6 //////////
@@ -162,4 +162,10 @@ const purchases = [
   Use a high order method to create to get the sum of bobsTotal.
 */
 
-let bobsTotal; //Code Here
+let bobsTotal = purchases.reduce((total, e) => {
+  if (e.owner === "Bob") {
+    return total + e.price;
+  } else {
+    return total;
+  }
+}, 0);
